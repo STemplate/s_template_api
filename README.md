@@ -1,19 +1,50 @@
 # STemplateApi
 
-To start your Phoenix server:
+Simple ..., String ... , Super?
+Liquid strings templates by API.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Model
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+```mermaid
+erDiagram
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+    template {
+        character_varying name
+        character_varying template
+        int version
+        bool enabled
+        array labels
+    }
 
-## Learn more
+    email_template {
+        character_varying name
+        character_varying subject_template
+        character_varying body_template
+        int version
+        bool enabled
+        array labels
+    }
+    
+    generated_files {
+        character_varying name
+        character_varying type
+        uuid template_id
+        character_varying url
+    }
+    
+    template ||--o{ generated_files : "template_id"
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+## Examples
+
+```txt
+That's my secret {{ hero.name }}: I'm always angry.
+```
+
+```json
+{
+  "hero": {
+    "name": "Captain"
+  }
+}
+```
