@@ -1,4 +1,6 @@
 defmodule STemplateApi.Templating.Template do
+  @moduledoc false
+
   use Ecto.Schema
   import Ecto.Changeset
 

@@ -22,7 +22,7 @@ defmodule STemplateApi.Templating do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_template(%{"name" => name} = attrs) do
+  def create_template(attrs = %{"name" => name}) do
     # TODO: move logic to Template!
     query =
       from t in Template,
