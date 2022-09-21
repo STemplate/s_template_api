@@ -1,11 +1,11 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     STemplateApi.Repo.insert!(%STemplateApi.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+# Version 1
+Templating.create_template(%{
+  name: "cool_template",
+  template: "That's my secret {{ hero.name }}: I'm always angry."
+})
+
+# Version 2
+Templating.create_template(%{
+  name: "cool_template",
+  template: "That's my secret {{ hero.name }}: I'm always angry!!!"
+})

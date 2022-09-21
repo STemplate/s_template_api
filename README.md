@@ -48,3 +48,29 @@ That's my secret {{ hero.name }}: I'm always angry.
   }
 }
 ```
+## Cleaning code
+
+```shell
+mix setup
+mix test
+
+mix format # format code
+mix credo # like rubocop
+mix coveralls.html # code coverage
+mix deps.audit # libraries vulnerabilities check
+mix sobelow # security static code check
+mix dialyzer # static analysis tool for Erlang
+mix docs # gen doc
+
+mix phx.server
+open http://localhost:4000/api/movies
+```
+
+## Routes
+
+```shell
+# simplified routes
+mix phx.routes | grep '/api' | awk '{print $2 " " $3}' | sed '/.*Controller/d'
+
+# seed some data
+mix run priv/repo/seeds.exs

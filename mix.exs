@@ -52,7 +52,6 @@ defmodule STemplateApi.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-
       {:finch, "~> 0.13"},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
       {:sobelow, "~> 0.8", only: :dev},
