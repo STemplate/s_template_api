@@ -6,10 +6,10 @@ defmodule STemplateApi.TemplatingFixtures do
     {:ok, template} =
       attrs
       |> Enum.into(%{
-        enabled: true,
-        labels: [],
-        name: "some_name",
-        template: "some template"
+        "enabled" => true,
+        "labels" => [],
+        "name" => "some_name",
+        "template" => "some template"
       })
       |> STemplateApi.Templating.create_template()
 

@@ -11,9 +11,9 @@ defmodule STemplateApi.TemplatingTest do
     test "create_template/1 with valid data creates a template" do
       assert {:ok, %Template{} = template} =
                Templating.create_template(%{
-                 labels: ["pdf", "liquid"],
-                 name: "some_name",
-                 template: "some template {{ var }}"
+                 "labels" => ["pdf", "liquid"],
+                 "name" => "some_name",
+                 "template" => "some template {{ var }}"
                })
 
       assert template.enabled == true
@@ -22,13 +22,11 @@ defmodule STemplateApi.TemplatingTest do
       assert template.template == "some template {{ var }}"
       assert template.version == 1
 
-      body = "some template {{ var }} 2"
-
       assert {:ok, %Template{} = template} =
                Templating.create_template(%{
-                 labels: ["pdf", "liquid"],
-                 name: "some_name",
-                 template: "some template {{ var }}2"
+                 "labels" => ["pdf", "liquid"],
+                 "name" => "some_name",
+                 "template" => "some template {{ var }}2"
                })
 
       assert template.enabled == true
@@ -39,9 +37,9 @@ defmodule STemplateApi.TemplatingTest do
 
       assert_raise RuntimeError, "Same template than last version", fn ->
         Templating.create_template(%{
-          labels: ["pdf", "liquid"],
-          name: "some_name",
-          template: "some template {{ var }}2"
+          "labels" => ["pdf", "liquid"],
+          "name" => "some_name",
+          "template" => "some template {{ var }}2"
         })
       end
     end
@@ -49,16 +47,16 @@ defmodule STemplateApi.TemplatingTest do
     test "create_template/1 with invalid data returns error changeset" do
       assert {:error, %Ecto.Changeset{}} =
                Templating.create_template(%{
-                 enabled: nil,
-                 labels: nil,
-                 name: nil,
-                 template: nil,
-                 version: nil
+                 "labels" => nil,
+                 "enabled" => nil,
+                 "name" => nil,
+                 "template" => nil,
+                 "version" => nil
                })
     end
 
     test "list_templates/0 returns all templates" do
-      template = template_fixture()
+      template_fixture()
       assert Templating.list_templates() == [{"some_name", 1}]
     end
 

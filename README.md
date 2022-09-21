@@ -74,3 +74,11 @@ mix phx.routes | grep '/api' | awk '{print $2 " " $3}' | sed '/.*Controller/d'
 
 # seed some data
 mix run priv/repo/seeds.exs
+```
+
+## Gen steps
+
+```shell
+mix phx.gen.context Templating Template templates name template version:integer enabled:boolean labels:array:string
+mix phx.gen.json Templating Template templates name template version:integer enabled:boolean labels:array:string --no-context
+```

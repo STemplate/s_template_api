@@ -15,14 +15,14 @@ defmodule STemplateApi.Templating do
 
   ## Examples
 
-      iex> Templating.create_template(%{name: "cool_template", template: "hello kitty"})
+      iex> Templating.create_template(%{"name" => "cool_template", "template" => "hello kitty"})
       {:ok, %Template{}}
 
-      iex> Templating.create_template(%{version: -1})
+      iex> Templating.create_template(%{"version" => -1})
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_template(%{name: name} = attrs) do
+  def create_template(%{"name" => name} = attrs) do
     # TODO: move logic to Template!
     query =
       from t in Template,
@@ -36,7 +36,7 @@ defmodule STemplateApi.Templating do
           1
 
         last ->
-          if last.template == attrs[:template] do
+          if last.template == attrs["template"] do
             raise "Same template than last version"
           end
 
@@ -44,7 +44,7 @@ defmodule STemplateApi.Templating do
       end
 
     %Template{}
-    |> Template.changeset(Map.merge(attrs, %{version: version, enabled: true}))
+    |> Template.changeset(Map.merge(attrs, %{"version" => version, "enabled" => true}))
     |> Repo.insert()
   end
 
