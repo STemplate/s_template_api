@@ -53,6 +53,8 @@ defmodule STemplateApi.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:finch, "~> 0.13"},
+      {:solid, "~> 0.13"},
+      {:recase, "~> 0.5"},
       {:dialyxir, "~> 1.0", only: :dev, runtime: false},
       {:sobelow, "~> 0.8", only: :dev},
       {:excoveralls, "~> 0.14.6", only: [:dev, :test]},

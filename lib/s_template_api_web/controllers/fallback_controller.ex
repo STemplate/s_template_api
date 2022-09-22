@@ -21,4 +21,13 @@ defmodule STemplateApiWeb.FallbackController do
     |> put_view(STemplateApiWeb.ErrorView)
     |> render(:"404")
   end
+
+  def call(conn, {:error, "Template not found"}), do: call(conn, {:error, :not_found})
+
+  def call(conn, {:error, msg}) do
+    conn
+    |> put_status(422)
+    |> put_view(STemplateApiWeb.ErrorView)
+    |> render(:"422.json", msg: msg)
+  end
 end

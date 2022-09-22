@@ -8,7 +8,9 @@ defmodule STemplateApiWeb.Router do
   scope "/api", STemplateApiWeb do
     pipe_through :api
 
-    resources "/templates", TemplateController, except: [:edit, :update], param: "name"
+    resources "/templates", TemplateController, except: [:edit, :update], param: "name" do
+      resources "/render", RenderController, only: [:create]
+    end
   end
 
   if Mix.env() in [:dev, :test] do
